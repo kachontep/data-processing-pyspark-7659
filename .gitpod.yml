@@ -1,2 +1,47 @@
 image:
   file: .gitpod.Dockerfile
+
+tasks:
+  - name: minio-server
+    init: |
+      mkdir -p /workspace/minio/data
+    command: |
+      export MINIO_OPTS="$MINIO_OPTS --address :9000 --console-address :9090"
+      export MINIO_ROOT_USER="${MINIO_ROOT_USER:-admin}"
+      export MINIO_ROOT_PASSWORD="${MINIO_ROOT_PASSWORD:-adminadmin}"
+      export MINIO_VOLUMES="/workspace/minio/data"
+
+      minio server $MINIO_OPTS $MINIO_VOLUMES
+
+  - name: livy-server
+    command: $LIVY_HOME/bin/livy-server
+
+  - name: jupyter-server
+    before: mkdir -p notebook
+    init: |
+      jupyter notebook --generate-config
+      sed -i "s/^# c.NotebookApp.token = .*/c.NotebookApp.token = ''/" $HOME/.jupyter/jupyter_notebook_config.py
+    command: jupyter notebook --no-browser --ip 0.0.0.0 --notebook-dir=./notebook
+
+ports:
+  - name: minio-s3
+    description: MinIO S3
+    port: 9000
+    onOpen: ignore
+
+  - name: minio-web
+    description: MinIO Web
+    port: 9090
+    onOpen: ignore
+
+  - name: livy
+    description: Livy HTTP
+    port: 8998
+    onOpen: ignore
+
+  - name: jupyter
+    description: Jupyter notebok server
+    port: 8888
+    onOpen: ignore
+
+    
