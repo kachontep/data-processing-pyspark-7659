@@ -5,6 +5,9 @@ tasks:
   - name: init-conf-dirs
     init: ./scripts/init-conf-dirs.sh
     
+  - name: init-spark-deps
+    init: ./scripts/init-spark-deps.sh
+
   - name: minio-server
     command: ./scripts/start-minio-server.sh
 
