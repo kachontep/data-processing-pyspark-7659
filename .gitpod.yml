@@ -18,7 +18,6 @@ tasks:
       ./scripts/start-livy-server.sh
     
   - name: jupyter-server
-    init: ./scripts/init-jupyter-server.sh
     command: |
       gp sync-await init-conf-dirs
       ./scripts/start-jupyter-server.sh
