@@ -14,5 +14,6 @@ for i in $(seq 0 $(($WORKER_NUM - 1))) ; do
 done
 
 # Stop master
+export SPARK_PID_DIR="$GITPOD_REPO_ROOT/spark_runs/pids/master"
 export SPARK_LOG_DIR="$GITPOD_REPO_ROOT/spark_runs/logs/master"
 $SPARK_HOME/sbin/stop-master.sh

@@ -5,13 +5,16 @@ BASEDIR=$(dirname "$0")
 source $BASEDIR/spark-cluster-env.sh
 
 # Start master
+export SPARK_PID_DIR="$GITPOD_REPO_ROOT/spark_runs/pids/master"
 export SPARK_LOG_DIR="$GITPOD_REPO_ROOT/spark_runs/logs/master"
 
 $SPARK_HOME/sbin/start-master.sh
 
-# Wait for master to open service port 7077
+# Wait for master to open service port 7077 and 8080
+gp ports await 7077
 gp ports await 8080
 
+echo "All Spark master ports ready!"
 
 # Start workers
 for i in $(seq 0 $((WORKER_NUM - 1))) ; do
