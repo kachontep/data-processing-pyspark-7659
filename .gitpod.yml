@@ -22,6 +22,11 @@ tasks:
       gp sync-await init-conf-dirs
       ./scripts/start-jupyter-server.sh
 
+  - name: spark-cluster
+    command: |
+      gp sync-await init-conf-dirs
+      ./scripts/start-spark-cluster.sh
+
 ports:
   - name: minio-s3
     description: MinIO S3

@@ -161,3 +161,8 @@ cython_debug/
 
 # Temporary Spark dependencies directory
 spark-deps/*.jar
+
+# Temporary Spark cluster runtime
+spark_runs/logs
+spark_runs/pids
+spark_runs/works
