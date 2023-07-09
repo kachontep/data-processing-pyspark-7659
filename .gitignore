@@ -166,3 +166,6 @@ spark-deps/*.jar
 spark_runs/logs
 spark_runs/pids
 spark_runs/works
+
+# Examples data for learning lab
+resources/data
