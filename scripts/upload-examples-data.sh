@@ -8,7 +8,7 @@ BASEDIR=$(dirname $0)
 mc alias set minio http://localhost:9000 admin adminadmin
 
 # Create bucket for examples
-mc mb -p datalake
+mc mb -p minio/datalake
 
 # Extract and upload data
 unzip -o -d $BASEDIR/../resources/data  $BASEDIR/../resources/data.zip
