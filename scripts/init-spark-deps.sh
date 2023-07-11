@@ -2,7 +2,7 @@
 
 SPARK_DEPS_DIR="./spark-deps"
 
-mkdir $SPARK_DEPS_DIR
+mkdir -p $SPARK_DEPS_DIR
 
 # Dependencies for S3A protocol accessing (used with MinIO server)
 mvn dependency:copy -Dartifact=org.apache.hadoop:hadoop-aws:3.3.1:jar -DoutputDirectory=$SPARK_DEPS_DIR
