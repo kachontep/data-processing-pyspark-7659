@@ -7,7 +7,7 @@ tasks:
     command: gp sync-done init-conf-dirs
     
   - name: init-spark-deps
-    init: ./scripts/init-spark-deps.sh
+    command: ./scripts/init-spark-deps.sh
 
   - name: minio-server
     command: ./scripts/start-minio-server.sh
