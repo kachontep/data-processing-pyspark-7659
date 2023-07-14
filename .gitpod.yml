@@ -58,4 +58,9 @@ ports:
     port: 8080
     onOpen: ignore
 
+  - name: mysql-server
+    description: MySQL server
+    port: 3306
+    onOpen: ignore
+
     

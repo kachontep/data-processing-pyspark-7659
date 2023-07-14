@@ -38,6 +38,20 @@ RUN cd /tmp \
     && chmod 777 /opt/livy/logs \
     && rm /tmp/apache-livy* 
 
+ # Install MySQL
+RUN install-packages mysql-server \
+ && mkdir -p /var/run/mysqld /var/log/mysql \
+ && chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring /var/lib/mysql-upgrade
+
+# Install our own MySQL config
+COPY docker/mysql/mysql.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
+
+# Install default-login for MySQL clients
+COPY docker/mysql/client.cnf /etc/mysql/mysql.conf.d/client.cnf
+
+COPY docker/mysql/mysql-bashrc-launch.sh /etc/mysql/mysql-bashrc-launch.sh
+
+
 USER gitpod
 
 # Python 3.10.9 
@@ -54,3 +68,6 @@ RUN pyenv install 3.10.9 \
 RUN python -m pip install sparkmagic \
     && jupyter nbextension enable --py --sys-prefix widgetsnbextension \
     && jupyter-kernelspec install --user $(python -m pip show sparkmagic | grep Location | cut -d" " -f2)/sparkmagic/kernels/pysparkkernel
+
+# MySQL startvim
+RUN echo "/etc/mysql/mysql-bashrc-launch.sh" >> /home/gitpod/.bashrc.d/100-mysql-launch

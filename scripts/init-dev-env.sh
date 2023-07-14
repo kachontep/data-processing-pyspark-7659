@@ -13,6 +13,9 @@ mkdir -p $SPARK_DEPS_DIR
 mvn dependency:copy -Dartifact=org.apache.hadoop:hadoop-aws:3.3.1:jar -DoutputDirectory=$SPARK_DEPS_DIR
 mvn dependency:copy -Dartifact=com.amazonaws:aws-java-sdk-bundle:1.11.901:jar -DoutputDirectory=$SPARK_DEPS_DIR
 
+# Dependencies for MySQL connector
+mvn dependency:copy -Dartifact=com.mysql:mysql-connector-j:8.0.33:jar -DoutputDirectory=$SPARK_DEPS_DIR
+
 sudo cp $SPARK_DEPS_DIR/*.jar $SPARK_HOME/jars
 
 #
