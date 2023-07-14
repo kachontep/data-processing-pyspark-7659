@@ -9,4 +9,6 @@ if [ ! -e "${MINIO_VOLUMES}" ]; then
     mkdir -p ${MINIO_VOLUMES}
 fi
 
+mc alias set minio http://localhost:9000 $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD
+
 minio server $MINIO_OPTS $MINIO_VOLUMES
