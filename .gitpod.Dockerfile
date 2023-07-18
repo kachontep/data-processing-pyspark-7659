@@ -68,6 +68,3 @@ RUN pyenv install 3.10.9 \
 RUN python -m pip install sparkmagic \
     && jupyter nbextension enable --py --sys-prefix widgetsnbextension \
     && jupyter-kernelspec install --user $(python -m pip show sparkmagic | grep Location | cut -d" " -f2)/sparkmagic/kernels/pysparkkernel
-
-# MySQL startvim
-RUN echo "/etc/mysql/mysql-bashrc-launch.sh" >> /home/gitpod/.bashrc.d/100-mysql-launch

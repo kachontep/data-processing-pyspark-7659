@@ -27,6 +27,9 @@ tasks:
       gp sync-await init-conf-dirs
       ./scripts/start-spark-cluster.sh
 
+  - name: mysql-server
+    command: ./scripts/start-mysql-server.sh
+
 ports:
   - name: minio-s3
     description: MinIO S3
